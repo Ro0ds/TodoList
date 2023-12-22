@@ -26,6 +26,8 @@ def create_user_file(user_name):
     if not os.path.isfile(JSON_FILE):    
         file = open(JSON_FILE, 'x')
         file.close()
+    
+    create_sample_task()
 
 def store_data(user_data):
     global JSON_FILE
@@ -47,6 +49,18 @@ def menu():
           ' > '
         )
     return op
+
+def create_sample_task():
+    task = {
+        'hash': 1,
+        'Task name': 'sample task',
+        'Created': '01/01/1900',
+        'Finish': '01/01/9999',
+        'Priotiry': 'normal'
+    }
+
+    task_list.append(task)
+    save_to_file(task_list)
 
 def create_task():
     print('\n>> Creating task...')
@@ -133,7 +147,7 @@ def delete_task(id):
 
 def get_JSON_file_info():
     with open(JSON_FILE, encoding='utf-8', mode='r') as openfile:
-        return json.load(openfile) if openfile.read(1) else ''
+        return json.load(openfile)
         
 def get_JSON_id_list():
     keys_list = []
