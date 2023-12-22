@@ -133,7 +133,7 @@ def delete_task(id):
 
 def get_JSON_file_info():
     with open(JSON_FILE, encoding='utf-8', mode='r') as openfile:
-        return json.load(openfile)
+        return json.load(openfile) if openfile.read(1) else ''
         
 def get_JSON_id_list():
     keys_list = []
